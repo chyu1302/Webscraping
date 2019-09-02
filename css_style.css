@@ -1,0 +1,15 @@
+h1 {
+    color: blue;
+}
+.borderbox {
+    border-width: 1px;
+    border-color: lightgray;
+    border-style: solid;
+    padding: 2px;
+}
+
+
+
+.text {
+    float: left;
+}

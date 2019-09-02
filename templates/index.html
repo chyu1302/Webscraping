@@ -17,10 +17,10 @@
     </div>
      <p>Latest Mars News</p>
      <p>Featured Mars Image</p>
-    <img src="{{ spaceimages/images/largesize/PIA23349_hires.jpg }}" alt="Mars Image">
+    <img src="{{ mars_data.mars_img }}" alt="Mars Image">
 
     <h2>Current Weather on Mars</h2>
-    <h3>Mars Facts: {{ vacation.max }}</h3>
+    <h3>Mars Facts: {{ mars_data.Tweet }}</h3>
     <!-- table -->
     <!-- <h3>Min Temp: {{ vacation.min_temp }}</h3> -->
   </div>
@@ -28,3 +28,7 @@
 </body>
 
 </html>
+<!-- mars_data=  {latest_mars_news: {'news title': news_title,'news p': news_p},
+          featured_mars_image: {'image': mars_img},
+          current_weather_on_mars:{'current weather on mars':Tweet},
+          mars_facts:{'mars facts':facts_dict}} -->
