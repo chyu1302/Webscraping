@@ -77,7 +77,7 @@ def scrape():
     df= df.iloc[:,0:2]
 
     # converting to dict 
-    facts_dict = df.set_index('Mars_features').to_dict()            
+    facts_dict = df.set_index('Mars_features').T.to_dict()            
 
     #-----------------------------------------------------------------------------------------
     browser = init_browser()
@@ -93,27 +93,27 @@ def scrape():
         i = i.get_text()
         browser.click_link_by_partial_text(i)
         soup2 = bs(browser.html, "html.parser")    
-        hemisphere_image_urls.append({"title": i, "img_url":soup2.find_all('a', string='Original')[0]['href']})
+        hemisphere_image_urls.append({"title": i, "img_url":soup2.find_all('a', string='Sample')[0]['href']})
         browser.back()
     # Close the browser after scraping
     browser.quit()
     # Return results
-    mars_data=  {'latest_mars_news': {'news title': news_title,'news p': news_p},
+    mars_data=  {'latest_mars_news': {'news_title': news_title,'news_p': news_p},
                 'featured_mars_image': {'image': mars_img},
-                'current_weather_on_mars' :{'current weather on mars':mars_weather},
-                'mars_facts': {'mars facts':facts_dict},
+                'current_weather_on_mars' :{'current_weather_on_mars':mars_weather},
+                'mars_facts': {'mars_facts':facts_dict},
                 'hemisphere':hemisphere_image_urls}
     return mars_data
 
 #pp = pprint.PrettyPrinter(indent=4)
-#pp.pprint(mars_data)
-#store the dictionary into Mongo database
-# Setup connection to mongodb
-conn = "mongodb://localhost:27017"
-client = pymongo.MongoClient(conn)
+# #pp.pprint(mars_data)
+# #store the dictionary into Mongo database
+# # Setup connection to mongodb
+# conn = "mongodb://localhost:27017"
+# client = pymongo.MongoClient(conn)
 
-# Select database and collection to use
-db = client['marsinfo']
-collection = db['mars_data']
+# # Select database and collection to use
+# db = client['marsinfo']
+# collection = db['mars_data']
 
-db.collection.insert_one(mars_data)
+# db.collection.insert_one(mars_data)

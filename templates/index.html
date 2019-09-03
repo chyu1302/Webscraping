@@ -15,20 +15,52 @@
       <h1>Mission to Mars</h1>
       <p><a class="btn btn-primary btn-lg" href="/scrape" role="button">Scrape New Data</a></p>
     </div>
-     <p>Latest Mars News</p>
-     <p>Featured Mars Image</p>
-    <img src="{{ mars_data.mars_img }}" alt="Mars Image">
+    <h1>Latest Mars News</h1>
+    <h2>{{mars_data.latest_mars_news.news_title}}</h2>
+    <p>{{mars_data.latest_mars_news.news_p}}</p>
+    <h1>Featured Mars Image</h1>
+    <img src="{{ mars_data.featured_mars_image.image }}" alt="Mars Image">
 
-    <h2>Current Weather on Mars</h2>
-    <h3>Mars Facts: {{ mars_data.Tweet }}</h3>
-    <!-- table -->
-    <!-- <h3>Min Temp: {{ vacation.min_temp }}</h3> -->
-  </div>
+    <h1>Current Weather on Mars:</h1>
+    <p>{{ mars_data.current_weather_on_mars.current_weather_on_mars }}</p>
+    <h1>Mars Facts: </h1>
+    <table>
+      {% for key, value in mars_data.mars_facts.mars_facts.items() %}
+         <tr>
+              <th> {{ key }} </th>
+              <td> {{ value.Mars }} </td>
+         </tr>
+      {% endfor %}
+    </table>
+    <h4>Mars Hemispere: {{ mars_data.hemisphere_image_urls }}</h4>
+    <div class="card">
+      <img src="{{mars_data.hemisphere.0.img_url}}" class="card-img-top" alt="Fig1" style="width:360px;">
+      <div class="card-body">
+        <h3>{{mars_data.hemisphere.0.title}}</h3>
+      </div>
+    </div>
+    <div class="card">
+      <img src="{{mars_data.hemisphere.1.img_url}}" class="card-img-top" alt="Fig1" style="width:360px;">
+      <div class="card-body">
+          <h3>{{mars_data.hemisphere.1.title}}</h3>
+      </div>
+    </div>
+    <div class="card">
+      <img src="{{mars_data.hemisphere.2.img_url}}" class="card-img-top" alt="Fig1" style="width:360px;">
+      <div class="card-body">
+          <h3>{{mars_data.hemisphere.2.title}}</h3>
+      </div>
+    </div>
+    <div class="card">
+      <img src="{{mars_data.hemisphere.3.img_url}}" class="card-img-top" alt="Fig1" style="width:360px;">
+      <div class="card-body">
+          <h3>{{mars_data.hemisphere.3.title}}</h3>
+      </div>
+    </div>
+      
+    
   </div>
 </body>
 
 </html>
-<!-- mars_data=  {latest_mars_news: {'news title': news_title,'news p': news_p},
-          featured_mars_image: {'image': mars_img},
-          current_weather_on_mars:{'current weather on mars':Tweet},
-          mars_facts:{'mars facts':facts_dict}} -->
+
